@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ua.kpi.tef.apeps.kpiboardapi.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findUserByUsername(String username);
 }
