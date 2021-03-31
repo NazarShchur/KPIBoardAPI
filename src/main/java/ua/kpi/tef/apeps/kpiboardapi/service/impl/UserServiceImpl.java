@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.kpi.tef.apeps.kpiboardapi.entity.Role;
+import ua.kpi.tef.apeps.kpiboardapi.entity.Status;
 import ua.kpi.tef.apeps.kpiboardapi.entity.User;
 import ua.kpi.tef.apeps.kpiboardapi.repository.UserRepository;
 import ua.kpi.tef.apeps.kpiboardapi.service.UserService;
@@ -17,8 +18,9 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     @Override
     public User register(User user) {
-        user.setRole(Role.USER);
+        user.setRole(Role.ROLE_USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setStatus(Status.ACTIVE);
         return userRepository.save(user);
     }
 
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserName(String username) {
+    public User findByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 

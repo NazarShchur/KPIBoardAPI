@@ -32,7 +32,7 @@ public class AuthenticationController {
         try {
             String username = dto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, dto.getPassword()));
-            User user = userService.findByUserName(username);
+            User user = userService.findByUsername(username);
             if(user == null) {
                 throw new UsernameNotFoundException(username + " not found");
             }
@@ -51,10 +51,10 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody User user) {
-        user = userService.register(user);
         var request = new AuthenticationRequestDto();
         request.setUsername(user.getUsername());
         request.setPassword(user.getPassword());
+        userService.register(user);
         return login(request);
     }
 }
