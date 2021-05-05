@@ -39,4 +39,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    @Override
+    public User setRole(Role role, Long id) {
+        var user = findById(id);
+        user.setRole(role);
+        return userRepository.save(user);
+    }
+
 }
