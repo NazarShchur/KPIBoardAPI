@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.kpi.tef.apeps.kpiboardapi.entity.Post;
 import ua.kpi.tef.apeps.kpiboardapi.service.PostService;
@@ -16,11 +18,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/posts")
 public class PostController {
     private final PostService service;
 
     @PostMapping
-    public Post savePost(Post post) {
+    public Post savePost(@RequestBody Post post) {
         return service.save(post);
     }
 
