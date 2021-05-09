@@ -10,6 +10,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,6 +25,10 @@ public class User {
 
     private String username;
 
+    private String name;
+
+    private String surname;
+
     private String password;
 
     private String email;
@@ -32,4 +38,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @OneToMany
+    private List<Post> posts;
 }

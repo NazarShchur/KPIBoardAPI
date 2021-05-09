@@ -3,8 +3,10 @@ package ua.kpi.tef.apeps.kpiboardapi.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.kpi.tef.apeps.kpiboardapi.dto.UserDto;
 import ua.kpi.tef.apeps.kpiboardapi.entity.Role;
 import ua.kpi.tef.apeps.kpiboardapi.entity.User;
 import ua.kpi.tef.apeps.kpiboardapi.service.UserService;
@@ -23,7 +25,7 @@ public class AdminController {
     }
 
     @PostMapping("/setrole")
-    public User setUserRole(Long id, Role role) {
-        return userService.setRole(role, id);
+    public User setUserRole(@RequestBody UserDto dto) {
+        return userService.setRole(dto.getRole(), dto.getId());
     }
 }
