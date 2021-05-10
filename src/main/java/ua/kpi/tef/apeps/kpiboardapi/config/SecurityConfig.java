@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**"};
     private static final String ADMIN_ENDPOINT = "/admin/**";
     private static final String LOGIN_ENDPOINT = "/auth/**";
+    private static final String FIND_USER = "/users/**";
     private static final String POSTS = "/posts/**";
 
     @Bean
@@ -46,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SWAGGER).permitAll()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(HttpMethod.GET, POSTS).permitAll()
+                .antMatchers(FIND_USER).permitAll()
                 .antMatchers(POSTS).hasAnyRole("MODERATOR","ADMIN")
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
